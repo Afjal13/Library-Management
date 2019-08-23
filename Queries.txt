@@ -1,0 +1,141 @@
+create table StdRegForm(
+std_name varchar(60),
+std_id int,
+std_dept varchar(60),
+std_level int,
+std_term int,
+std_email varchar(60),
+std_mobile numeric(60),
+std_username varchar(60),
+std_password varchar(60),
+primary key(std_id)
+);
+
+create table FacRegForm(
+fac_name varchar(60),
+fac_nid int,
+fac_dept varchar(60),
+fac_email varchar(60),
+fac_mobile numeric(60),
+fac_username varchar(60),
+fac_password varchar(60),
+primary key (fac_mobile)
+);
+
+create table BookRegForm(
+book_name varchar(60),
+author_name varchar(60),
+serial_id int,
+book_dept varchar(60),
+book_quantity int,
+primary key (serial_id)
+);
+
+create table AdminAssistantRegForm(
+ast_name varchar(60),
+ast_id int,
+ast_address varchar(60),
+ast_nid int,
+ast_mobile numeric(60),
+ast_email varchar(60),
+primary key (ast_id)
+);
+
+create table IssueBookConfirm(
+ibc_username varchar(60),
+ibc_id int,
+ibc_email varchar(60),
+ibc_mobile int,
+ibc_booksid int,
+ibc_bookname varchar(60),
+ibc_bookan varchar(60),
+ibc_date varchar(60)
+);
+
+create table ReturnBookConfirm(
+rbc_name varchar(60),
+rbc_id int,
+rbc_email varchar(60),
+rbc_mobile int,
+rbc_booksid int,
+rbc_issuedate varchar(60),
+rbc_returndate varchar(60),
+rbc_todaysdate varchar(60),
+rbc_fine varchar(60)
+);
+
+create table ReturnBookList(
+rbl_name varchar(60),
+rbl_id int,
+rbl_email varchar(60),
+rbl_mobile int,
+rbl_booksid int,
+rbl_issuedate varchar(60),
+rbl_returndate varchar(60),
+rbl_todaysdate varchar(60),
+rbl_fine varchar(60)
+);
+
+create table IssueBook(
+ib_username varchar(60),
+ib_id int,
+ib_email varchar(60),
+ib_mobile int,
+ib_booksid int,
+ib_bookname varchar(60),
+ib_bookan varchar(60),
+ib_date varchar(60)
+);
+
+create table FineShow(
+fs_name varchar(60),
+fs_id int,
+fs_email varchar(60),
+fs_mobile int,
+fs_booksid int,
+fs_issuedate varchar(60),
+fs_returndate varchar(60),
+fs_todaysdate varchar(60),
+fs_fine varchar(60)
+);
+
+
+
+select * from StdRegForm;
+select * from FacRegForm;
+select * from BookRegForm;
+select * from AdminAssistantRegForm;
+select * from IssueBook;
+select * from IssueBookConfirm;
+select * from FineShow;
+select * from ReturnBookConfirm;
+select * from ReturnBookList;
+
+
+select std_email from StdRegForm where std_id="1101028";
+
+select std_name, std_id, std_dept, std_level, std_term, std_email, std_mobile from StdRegForm;
+
+select * from StdRegForm where std_id="5";
+
+delete from IssueBook where ib_id="5";
+
+INSERT INTO IssueBookConfirm (ibc_username,ibc_id,ibc_email,ibc_mobile,ibc_booksid,ibc_bookname,ibc_bookan,ibc_date) 
+SELECT ib_username,ib_id,ib_email,ib_mobile,ib_booksid,ib_bookname,ib_bookan,ib_date FROM IssueBook WHERE ib_id = "1101028";
+
+drop table StdRegForm;
+drop table FacRegForm;
+drop table BookRegForm;
+drop table AdminAssistantRegForm;
+drop table IssueBook;
+drop table IssueBookConfirm;
+drop table FineShow;
+drop table ReturnBookList;
+
+alter table IssueBookConfirm add ibc_return varchar(60);
+
+select * from IssueBookConfirm;
+
+truncate table ReturnBookConfirm;
+
+update IssueBookConfirm set ibc_return="March 03,2019" where ibc_id="1101028";
